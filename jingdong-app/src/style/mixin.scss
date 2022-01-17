@@ -1,0 +1,6 @@
+//单行文本的超出省略号展示
+@mixin ellipsis{
+  overflow: hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+}
