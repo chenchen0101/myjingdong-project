@@ -42,7 +42,7 @@ export default {
   bottom: 0;
   width: 100%;
   height: 0.49rem;
-  border-top: 1px solid #f1f1f1;
+  border-top: 0.01rem solid #f1f1f1;
   color: #333;
   &__item {
     flex: 1;
@@ -59,7 +59,7 @@ export default {
 
 //浏览器里展示的最小像素是12像素，所以用transform属性将其横纵向各缩50%，缩小为10px
 .docker__title {
-  font-size: 20px;
+  font-size: 0.2rem;
   transform: scale(0.5, 0.5);
   transform-origin: center top;
 }

@@ -110,16 +110,16 @@ export default {
     width: 2.95rem;
     height: 0.48rem;
     background: #f9f9f9;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 6px;
-    border-radius: 6px;
+    border: 0.01rem solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.06rem;
+    border-radius: 0.06rem;
     margin: 0 0.4rem 0.16rem 0.4rem;
     .content {
       width: 100%;
-      font-size: 16px;
+      font-size: 0.16rem;
       color: rgba(0, 0, 0, 0.5);
       letter-spacing: 0;
-      line-height: 24px;
+      line-height: 0.24rem;
       border: none;
       outline: none;
       background: none;
@@ -133,11 +133,11 @@ export default {
     width: 2.95rem;
     line-height: 0.48rem;
     background: #0091ff;
-    box-shadow: 0 4px 8px 0 rgba(0, 145, 255, 0.32);
-    border-radius: 4px;
-    border-radius: 4px;
+    box-shadow: 0 0.04rem 0.08rem 0 rgba(0, 145, 255, 0.32);
+    border-radius: 0.04rem;
+    border-radius: 0.04rem;
     text-align: center;
-    font-size: 16px;
+    font-size: 0.16rem;
     color: #ffffff;
     letter-spacing: 0;
     text-align: center;
@@ -146,7 +146,7 @@ export default {
   .register-link {
     width: 0.98rem;
     line-height: 0.2rem;
-    font-size: 14px;
+    font-size: 0.14rem;
     color: rgba(0, 0, 0, 0.5);
     letter-spacing: 0;
     margin: 0 1.38rem 0 1.39rem;

@@ -1,30 +1,51 @@
 <template>
   <div class="goodsContent">
     <div class="categrory">
-      <div class="categrory__item categrory__item--active">全部商品</div>
-      <div class="categrory__item">秒杀</div>
-      <div class="categrory__item">新鲜水果</div>
-      <div class="categrory__item">休闲食品</div>
-      <div class="categrory__item">时令时蔬</div>
-      <div class="categrory__item">肉蛋家禽</div>
+      <div
+        :class="{
+          categrory__item: true,
+          'categrory__item--active': currentTab === item.tab,
+        }"
+        v-for="item in categories"
+        :key="item.name"
+        @click="() => handleTabClick(item.tab)"
+      >
+        {{ item.name }}
+      </div>
     </div>
     <div class="product">
-      <div class="product__item">
-        <img src="src\assets\提子.jpg" class="img" />
+      <div class="product__item" v-for="item in List" :key="item.id">
+        <img :src="item.imgUrl" class="img" />
         <div class="detail">
           <h4 class="title">
-            番茄250g/份番茄250g/份番茄250g/份番茄250g/份番茄250g/份番茄250g/份
+            {{ item.name }}
           </h4>
-          <p class="sales">月售10件</p>
+          <p class="sales">{{ item.sales }}</p>
           <p class="price">
-            <span class="yen">&yen;</span>33.6
-            <span class="origin">&yen;66.6</span>
+            <span class="yen">&yen;</span>{{ item.price }}
+            <span class="origin">&yen;{{ item.oldPrice }}</span>
           </p>
         </div>
         <div class="product__number">
-          <span class="minus">-</span>
-          0
-          <span class="plus">+</span>
+          <span
+            class="minus"
+            @click="
+              () => {
+                changeCartItemInfo(shopId, item.id, item, -1);
+              }
+            "
+            >-</span
+          >
+          {{ item.count || 0 }}
+          <span
+            class="plus"
+            @click="
+              () => {
+                changeCartItemInfo(shopId, item.id, item, 1);
+              }
+            "
+            >+</span
+          >
         </div>
       </div>
     </div>
@@ -33,23 +54,66 @@
 
 <script>
 import { get } from "../../utils/request";
-import { reactive } from "@vue/reactivity";
+import { computed, reactive, toRefs, ref, watchEffect } from "vue";
+import { useRoute } from "vue-router";
+import { useCommontCartEffect } from "./commonCartEffect";
 function getImageUrl(name) {
   return new URL(`../../assets/${name}`, import.meta.url).href;
 }
+
+//categories相关代码
+const categories = [
+  { name: "全部商品", tab: "all" },
+  { name: "秒杀", tab: "seckill" },
+  { name: "水果", tab: "fruit" },
+];
+
+//和tab切换相关的逻辑
+const uesTabEffect = () => {
+  const currentTab = ref(categories[0].tab);
+  const handleTabClick = (tab) => {
+    currentTab.value = tab;
+  };
+  return { currentTab, handleTabClick };
+};
+
+//和列表内容相关
+const useCurrentListEffect = (currentTab, shopId) => {
+  const content = reactive({ List: [] });
+
+  const getproductsdata = async () => {
+    const result = await get(`/api/shop/shop-content/${shopId}/products`, {
+      tab: currentTab.value,
+    });
+    if (result.data?.errno === 0 && result.data?.data) {
+      content.List = result.data.data;
+    }
+  };
+  //watchEffect指首次页面加载或数据变化的时候都会执行一次
+  watchEffect(() => {
+    getproductsdata();
+  });
+  const { List } = toRefs(content);
+  return { List };
+};
+
 export default {
   name: "Content",
   setup() {
-    const getproductsdata = async () => {
-      const result = await get("/api/shop/shop-content/1/products", {
-        tab: "all",
-      });
-      if (result.data?.errno === 0 && result.data?.data) {
-        console.log(result.data);
-      }
+    const { currentTab, handleTabClick } = uesTabEffect();
+    const { List } = useCurrentListEffect(currentTab);
+    const { cartList, changeCartItemInfo } = useCommontCartEffect();
+    const route = useRoute();
+    const shopId = route.params.id;
+    return {
+      currentTab,
+      List,
+      categories,
+      handleTabClick,
+      shopId,
+      cartList,
+      changeCartItemInfo,
     };
-    getproductsdata();
-    return { getproductsdata };
   },
 };
 </script>
@@ -97,7 +161,7 @@ export default {
       overflow: hidden;
       .title {
         line-height: 0.2rem;
-        font-size: 14px;
+        font-size: 0.14rem;
         color: #333333;
         //使超出内容...表示
         @include ellipsis;
@@ -105,7 +169,7 @@ export default {
       .sales {
         font-size: 0.12rem;
         color: #333333;
-        line-height: 16px;
+        line-height: 0.16rem;
         margin: 0.06rem 0;
       }
       .price {
@@ -113,10 +177,10 @@ export default {
         font-size: 0.14rem;
         color: #e93b3b;
         .yen {
-          font-size: 10px;
+          font-size: 0.1rem;
         }
         .origin {
-          font-size: 10px;
+          font-size: 0.1rem;
           color: #999999;
           text-decoration: line-through;
           margin-left: 0.06rem;
@@ -127,9 +191,9 @@ export default {
       position: absolute;
       right: 0rem;
       bottom: 0.12rem;
-      font-size: 14px;
+      font-size: .14rem;
       color: #333333;
-      line-height: 16px;
+      line-height: .16rem;
       .minus,
       .plus {
         display: inline-block;

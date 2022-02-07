@@ -73,7 +73,7 @@ export default {
   margin-bottom: 0.12rem;
   border-radius: 0.16rem;
   background: #f5f5f5;
-  font-size: 14px;
+  font-size: .14rem;
   color: #b7b7b7;
   .iconfont {
     margin: 0 0.12rem 0 0.16rem;

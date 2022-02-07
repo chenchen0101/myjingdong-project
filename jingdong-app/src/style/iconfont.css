@@ -1,12 +1,12 @@
 @font-face {
   font-family: 'iconfont';  /* Project id 2988528 */
-  src: url('//at.alicdn.com/t/font_2988528_zoego652g3.woff2?t=1642055770416') format('woff2'),
-       url('//at.alicdn.com/t/font_2988528_zoego652g3.woff?t=1642055770416') format('woff'),
-       url('//at.alicdn.com/t/font_2988528_zoego652g3.ttf?t=1642055770416') format('truetype');
+  src: url('//at.alicdn.com/t/font_2988528_8dsz0y2drb8.woff2?t=1642513881943') format('woff2'),
+       url('//at.alicdn.com/t/font_2988528_8dsz0y2drb8.woff?t=1642513881943') format('woff'),
+       url('//at.alicdn.com/t/font_2988528_8dsz0y2drb8.ttf?t=1642513881943') format('truetype');
 }
 .iconfont {
   font-family: "iconfont" !important;
-  font-size: 16px;
+  font-size: .16rem;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

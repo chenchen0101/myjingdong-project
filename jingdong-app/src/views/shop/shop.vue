@@ -14,10 +14,12 @@
       :hideLine="true"
     />
     <Content />
+    <Cart />
   </div>
 </template>
 
 <script>
+import Cart from "./Cart.vue";
 import Content from "./Content.vue";
 import Shopinfo from "../../components/Shopinfo.vue";
 //在 setup 里面没有访问 this，所以我们不能再直接访问 this.$router
@@ -60,7 +62,7 @@ const handleClickEffect = () => {
 
 export default {
   name: "Shop",
-  components: { Shopinfo, Content },
+  components: { Shopinfo, Content, Cart },
   setup() {
     const { shopContent, getshopContent } = getshopContentEffect();
     const { handleClick } = handleClickEffect();
@@ -89,7 +91,7 @@ export default {
       flex: 1;
       line-height: 0.32rem;
       background: #f5f5f5;
-      border-radius: 16px;
+      border-radius: 0.1rem;
       &__icon {
         width: 0.44rem;
         text-align: center;
@@ -104,7 +106,7 @@ export default {
         background: none;
         height: 0.32rem;
         color: #333333;
-        font-size: 14px;
+        font-size: 0.14rem;
         &::placeholder {
           color: #333333;
         }

@@ -58,7 +58,7 @@ export default {
       .highlight {
         // rgba: rgba(233, 59, 59, 1);
         height: 0.18rem;
-        font-size: 13px;
+        font-size: 0.13rem;
         color: #e93b3b;
         margin: 0;
       }
