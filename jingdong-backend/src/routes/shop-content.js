@@ -8,7 +8,7 @@ router.get('/shop/shop-content/:id', (req, res) => {
     {
       id: '1',
       name: '山姆会员商店1',
-      imgUrl: 'http://localhost:5000/%E8%B6%85%E5%B8%82@2x.png',
+      imgUrl: 'http://192.168.1.8:5000/%E8%B6%85%E5%B8%82@2x.png',
       sales: 10000,
       expressLimit: 0,
       expressPrice: 5,
@@ -17,7 +17,7 @@ router.get('/shop/shop-content/:id', (req, res) => {
     {
       id: '2',
       name: '山姆会员商店2',
-      imgUrl: 'http://localhost:5000/%E8%B6%85%E5%B8%82@2x.png',
+      imgUrl: 'http://192.168.1.8:5000/%E8%B6%85%E5%B8%82@2x.png',
       sales: 2000,
       expressLimit: 0,
       expressPrice: 5,
@@ -26,7 +26,7 @@ router.get('/shop/shop-content/:id', (req, res) => {
     {
       id: '3',
       name: '山姆会员商店3',
-      imgUrl: 'http://localhost:5000/%E8%B6%85%E5%B8%82@2x.png',
+      imgUrl: 'http://192.168.1.8:5000/%E8%B6%85%E5%B8%82@2x.png',
       sales: 3000,
       expressLimit: 0,
       expressPrice: 5,

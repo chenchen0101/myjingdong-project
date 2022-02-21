@@ -1,7 +1,7 @@
 import axios from 'axios'
 export const get = (url, payload) => {
   return axios.get(url, {
-    baseURL: 'http://192.168.1.8:5000',
+    baseURL: 'http://localhost:5000',
     params: payload
   })
 }
